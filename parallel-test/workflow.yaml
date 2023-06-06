@@ -1,0 +1,25 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  long_wait:
+    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    step: wait
+    input:
+      seconds: 10
+  medium_wait:
+    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    step: wait
+    input:
+      seconds: 8
+  short_wait:
+    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    step: wait
+    input:
+      seconds: 1
+outputs:
+  a:
+    b: !expr $.steps.medium_wait.outputs
