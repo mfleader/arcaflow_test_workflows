@@ -1,0 +1,13 @@
+log:
+  level: debug
+deployer:
+  type: docker
+  deployment:
+    host:
+      NetworkMode: "host"
+    imagePullPolicy: Always
+logged_outputs:
+  error:
+    level: error
+  #success:
+  #  level: info

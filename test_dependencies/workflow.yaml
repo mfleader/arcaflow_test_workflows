@@ -1,0 +1,22 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        test:
+          display:
+            description: Test
+            name: test
+          type:
+            type_id: string
+steps:
+  uuidgen:
+    plugin: quay.io/arcalot/arcaflow-plugin-utilities:latest
+    step: uuid
+    input: {}
+output:
+  output1: !expr $.input.test
+  output2: !expr $.input.test
+  uuid1: !expr $.steps.uuidgen.outputs.success.uuid
+  uuid2: !expr $.steps.uuidgen.outputs.success.uuid

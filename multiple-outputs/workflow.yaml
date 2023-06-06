@@ -1,0 +1,23 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        name:
+          type:
+            type_id: string
+steps:
+  example:
+    plugin: quay.io/mleader/arcaflow-plugin-example:0.3.0
+    input:
+      name: !expr $.input.name
+  example2:
+    plugin: quay.io/mleader/arcaflow-plugin-example:0.3.0
+    input:
+      name: !expr $.input.name
+outputs:
+  success:
+    message: !expr $.steps.example.outputs.success.message
+  success-2:
+    message: !expr $.steps.example2.outputs.success.message

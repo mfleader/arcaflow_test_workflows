@@ -1,0 +1,9 @@
+log:
+  level: debug
+deployer:
+  type: podman
+#  type: docker
+  deployment:
+    host:
+      NetworkMode: "host"
+    imagePullPolicy: IfNotPresent

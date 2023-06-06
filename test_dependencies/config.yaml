@@ -1,0 +1,14 @@
+log:
+  level: debug
+deployer:
+#  type: podman
+  type: docker
+  deployment:
+    host:
+      NetworkMode: "host"
+    imagePullPolicy: IfNotPresent
+logged_outputs:
+  error:
+    level: error
+  success:
+    level: debug

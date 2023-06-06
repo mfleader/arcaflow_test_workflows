@@ -1,0 +1,44 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        kubeconfig:
+          display:
+            description: The complete kubeconfig file as a string
+            name: Kubeconfig file contents
+          type:
+            type_id: string
+          required: true
+steps:
+  kubeconfig:
+    plugin: quay.io/arcalot/arcaflow-plugin-kubeconfig:0.2.0
+    input:
+      kubeconfig: !expr $.input.kubeconfig
+  service:
+    plugin: quay.io/arcalot/arcaflow-plugin-service:0.1.0
+    input:
+      connection: !expr $.steps.kubeconfig.outputs.success.connection
+      service:
+        metadata:
+          namespace: default
+        spec:
+          ports:
+           - name: control
+             port: 20000
+             protocol: TCP
+           - name: controludp
+             port: 20000
+             protocol: UDP
+           - name: workload
+             port: 30000
+             protocol: TCP
+           - name: workloadudp
+             port: 30000
+             protocol: UDP
+          selector:
+            arcaflow: uperf-server
+outputs:
+  success:
+    service: !expr $.steps.service.outputs.success

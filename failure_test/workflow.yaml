@@ -1,0 +1,19 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        kubeconfig:
+          display:
+            description: The complete kubeconfig file as a string
+            name: Kubeconfig file contents
+          type:
+            type_id: string
+steps:
+  kubeconfig:
+    plugin: quay.io/joconnel/arcaflow-plugin-kubeconfig:latest
+    input:
+      kubeconfig: !expr $.input.kubeconfig
+output:
+  output: !expr $.steps.kubeconfig.outputs.success

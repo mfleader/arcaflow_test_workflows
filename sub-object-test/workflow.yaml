@@ -1,0 +1,26 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        subobject:
+          display:
+            name: "subobject-in-root"
+            description: "this is the problematic part"
+          type:
+            type_id: ref
+    subobject:
+      id: subobject
+      properties:
+        foo:
+          display:
+            name: "foo"
+            description: "this is not the problematic part"
+          type:
+            type_id: string
+steps:
+  narf:
+    plugin: narf
+    input: {}
+output: {}
