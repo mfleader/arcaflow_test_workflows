@@ -9,8 +9,10 @@ input:
            type_id: string
 steps:
   example:
-    plugin: quay.io/arcalot/arcaflow-plugin-example
+    plugin: quay.io/arcalot/arcaflow-plugin-example:5a80de495338
     input:
-      name: !expr $.input.name
+      name:
+        _type: "nickname"
+        nick: !expr $.input.name
 output:
   message: !expr $.steps.example.outputs.success.message
