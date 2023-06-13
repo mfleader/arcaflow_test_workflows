@@ -9,12 +9,12 @@ steps:
     plugin: quay.io/joconnel/arcaflow-plugin-wait
     step: wait
     input:
-      seconds: 10
+      seconds: 3
   medium_wait:
     plugin: quay.io/joconnel/arcaflow-plugin-wait
     step: wait
     input:
-      seconds: 8
+      seconds: 2
   short_wait:
     plugin: quay.io/joconnel/arcaflow-plugin-wait
     step: wait
