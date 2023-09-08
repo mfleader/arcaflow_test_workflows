@@ -6,21 +6,21 @@ input:
       properties: {}
 steps:
   long_wait:
-    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:with-sdkv0.4.0-beta.1-1
     step: wait
     input:
-      seconds: 60
+      wait_time_ms: 60000
   medium_wait:
-    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:with-sdkv0.4.0-beta.1-1
     step: wait
     input:
-      seconds: 50
+      wait_time_ms: 50000
     stop_if: !expr $.steps.short_wait.outputs
   short_wait:
-    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:with-sdkv0.4.0-beta.1-1
     step: wait
     input:
-      seconds: 1
+      wait_time_ms: 1000
 outputs:
   a:
     b: !expr $.steps.medium_wait.outputs

@@ -5,19 +5,19 @@ input:
       id: RootObject
       properties: {}
 steps:
-#  long_wait:
-#    plugin: quay.io/joconnel/arcaflow-plugin-wait
-#    step: wait
-#    input:
-#      seconds: 60
-  medium_wait:
-    plugin: quay.io/joconnel/arcaflow-plugin-wait
+  long_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:early-abort-support_f8d1837
     step: wait
     input:
       seconds: 10
+  medium_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:early-abort-support_f8d1837
+    step: wait
+    input:
+      seconds: 5
     stop_if: !expr $.steps.short_wait.outputs
   short_wait:
-    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:early-abort-support_f8d1837
     step: wait
     input:
       seconds: 1
