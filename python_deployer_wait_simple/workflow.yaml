@@ -6,7 +6,7 @@ input:
       properties: {}
 steps:
   long_wait:
-    plugin: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git
+    plugin: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git@b8a2c0db159aee64672b664b1bd3c3745249ecd8
     step: wait
     input:
       seconds: 4
