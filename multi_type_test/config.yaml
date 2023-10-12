@@ -1,0 +1,12 @@
+log:
+  level: debug
+deployer:
+  type: python
+  modulePullPolicy: IfNotPresent
+  pythonPath: /opt/homebrew/bin/python3
+  workdir: /Users/joconnel/Documents/projects/arcaflow/workflows/test-workflows/multi_type_test/tmp
+logged_outputs:
+  error:
+    level: error
+  #success:
+  #  level: info

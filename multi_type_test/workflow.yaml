@@ -1,0 +1,24 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  python_wait:
+    plugin: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git
+    step: wait
+    input:
+      seconds: 4
+  container_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:latest
+    step: wait
+    input:
+      seconds: 4
+    deploy:
+      type: podman
+outputs:
+  a:
+    python: !expr $.steps.python_wait.outputs
+    container: !expr $.steps.container_wait.outputs
+

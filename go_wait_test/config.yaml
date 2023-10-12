@@ -1,13 +1,13 @@
 log:
   level: debug
 deployer:
-  type: podman
 #  type: docker
+  type: podman
 #  connection:
 #    host: "unix:///Users/joconnel/.lima/docker/sock/docker.sock"
   deployment:
-    host:
-      NetworkMode: "host"
+#    host:
+#      NetworkMode: "host"
     imagePullPolicy: Always
 logged_outputs:
   error:

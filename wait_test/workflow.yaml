@@ -6,18 +6,18 @@ input:
       properties: {}
 steps:
   long_wait:
-    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:early-abort-support_5d41239
     step: wait
     input:
-      seconds: 60
+      seconds: 6
   medium_wait:
-    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:early-abort-support_5d41239
     step: wait
     input:
-      seconds: 50
+      seconds: 4
     stop_if: !expr $.steps.short_wait.outputs
   short_wait:
-    plugin: quay.io/joconnel/arcaflow-plugin-wait
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:early-abort-support_5d41239 
     step: wait
     input:
       seconds: 1

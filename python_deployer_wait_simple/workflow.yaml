@@ -1,0 +1,15 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  long_wait:
+    plugin: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git
+    step: wait
+    input:
+      seconds: 4
+outputs:
+  a:
+    b: !expr $.steps.long_wait.outputs

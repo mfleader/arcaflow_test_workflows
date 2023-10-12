@@ -1,0 +1,26 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  long_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:use-signals_3e7f915_arm64
+    step: wait
+    input:
+      wait_time_ms: 6000
+  medium_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:use-signals_3e7f915_arm64
+    step: wait
+    input:
+      wait_time_ms: 5000
+    stop_if: !expr $.steps.short_wait.outputs
+  short_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:use-signals_3e7f915_arm64
+    step: wait
+    input:
+      wait_time_ms: 1000
+outputs:
+  a:
+    b: !expr $.steps.medium_wait.outputs

@@ -9,7 +9,7 @@ input:
            type_id: string
 steps:
   example:
-    plugin: quay.io/arcalot/arcaflow-plugin-example@sha256:4b9736645df26317586fdab6a3af250ecf6dc732df8d5ee24cad35436e5516c9
+    plugin: quay.io/arcalot/arcaflow-plugin-example:0.2.0
     input:
       name:
         _type: "nickname"
