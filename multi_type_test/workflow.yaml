@@ -6,7 +6,7 @@ input:
       properties: {}
 steps:
   python_wait:
-    plugin: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git
+    plugin: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git@93330402dcff63dcee3e3f5ba37b6a5266f6670d
     step: wait
     input:
       seconds: 4
