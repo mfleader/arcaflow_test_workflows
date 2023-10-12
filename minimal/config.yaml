@@ -1,10 +1,8 @@
 log:
   level: debug
 deployer:
-#  type: docker
-  type: podman
-#  connection:
-#    host: "unix:///Users/joconnel/.lima/docker/sock/docker.sock"
+  type: docker
+#  type: podman
   deployment:
     host:
       NetworkMode: "host"

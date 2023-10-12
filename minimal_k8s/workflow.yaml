@@ -1,0 +1,36 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        kubeconfig:
+          display:
+            description: The complete kubeconfig file as a string
+            name: Kubeconfig file contents
+          type:
+            type_id: string
+          required: true
+steps:
+  kubeconfig:
+    plugin: quay.io/arcalot/arcaflow-plugin-kubeconfig:0.2.0
+    input:
+      kubeconfig: !expr $.input.kubeconfig
+  short_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go@sha256:eb232c04dae3f57b1671155050a40bc84d2c1fda920163fa303fd0ce3b4cc415
+    step: wait
+    input:
+      wait_time_ms: 3000
+    deploy:
+      type: kubernetes
+      connection: !expr $.steps.kubeconfig.outputs.success.connection
+      pod:
+        metadata:
+          labels:
+            arcaflow: wait_pod
+        spec:
+          pluginContainer:
+            imagePullPolicy: IfNotPresent
+outputs:
+  a:
+    b: !expr $.steps.short_wait.outputs

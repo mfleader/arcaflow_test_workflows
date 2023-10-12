@@ -1,0 +1,15 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  short_wait:
+    plugin: quay.io/joconnel/arcaflow-plugin-test-impl-go@sha256:c53d83da1ec362c25a07a1c43ef90cb84810b75080f6ed1b355a0d596f52d8a6
+    step: wait
+    input:
+      wait_time_ms: 3600000
+outputs:
+  a:
+    b: !expr $.steps.short_wait.outputs

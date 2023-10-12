@@ -6,18 +6,18 @@ input:
       properties: {}
 steps:
   long_wait:
-    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:use-signals_3e7f915_arm64
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:with-sdkv0.4.0-beta.1-1
     step: wait
     input:
-      wait_time_ms: 6000
+      wait_time_ms: 60000
   medium_wait:
-    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:use-signals_3e7f915_arm64
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:with-sdkv0.4.0-beta.1-1
     step: wait
     input:
-      wait_time_ms: 5000
+      wait_time_ms: 50000
     stop_if: !expr $.steps.short_wait.outputs
   short_wait:
-    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:use-signals_3e7f915_arm64
+    plugin: quay.io/arcalot/arcaflow-plugin-test-impl-go:with-sdkv0.4.0-beta.1-1
     step: wait
     input:
       wait_time_ms: 1000
