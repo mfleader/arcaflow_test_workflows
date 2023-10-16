@@ -1,0 +1,15 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  short_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:0.0.1-atp-v1
+    step: wait
+    input:
+      seconds: 3
+outputs:
+  a:
+    b: !expr $.steps.short_wait.outputs

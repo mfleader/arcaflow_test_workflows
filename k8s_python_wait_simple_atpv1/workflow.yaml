@@ -1,0 +1,30 @@
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  kubeconfig:
+    plugin: quay.io/arcalot/arcaflow-plugin-kubeconfig:0.2.0
+    input:
+      kubeconfig: !expr $.input.kubeconfig
+  short_wait:
+    plugin: quay.io/arcalot/arcaflow-plugin-wait:0.0.1-atp-v1
+    step: wait
+    input:
+      seconds: 3
+    deploy:
+      type: kubernetes
+      connection: !expr $.steps.kubeconfig.outputs.success.connection
+      pod:
+        metadata:
+          namespace: default
+          labels:
+            arcaflow: stressng
+        spec:
+          pluginContainer:
+            imagePullPolicy: IfNotPresent
+outputs:
+  a:
+    b: !expr $.steps.short_wait.outputs
