@@ -1,4 +1,4 @@
-version: v0.1.0
+version: v0.2.0
 input:
   root: RootObject
   objects:
@@ -7,7 +7,9 @@ input:
       properties: {}
 steps:
   long_wait:
-    plugin: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git@93330402dcff63dcee3e3f5ba37b6a5266f6670d
+    plugin:
+      src: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git@afdc2323805ffe2b37271f3a852a4ce7ac7379e1
+      deployment_type: python
     step: wait
     input:
       seconds: 4

@@ -1,10 +1,11 @@
 log:
   level: debug
-deployer:
-  type: python
-  modulePullPolicy: IfNotPresent
-  pythonPath: /opt/homebrew/bin/python3
-  workdir: /Users/joconnel/Documents/projects/arcaflow/workflows/test-workflows/python_deployer_wait_simple/tmp
+deployers:
+  python:
+    deployer_id: python
+    modulePullPolicy: IfNotPresent
+    pythonPath: /opt/homebrew/bin/python3
+    workdir: /Users/joconnel/Documents/projects/arcaflow/workflows/test-workflows/python_deployer_wait_simple/tmp
 logged_outputs:
   error:
     level: error
