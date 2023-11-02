@@ -1,0 +1,19 @@
+log:
+  level: debug
+deployers:
+  image:
+    deployer_name: docker
+    deployment:
+      host:
+        NetworkMode: "host"
+      imagePullPolicy: Always
+  python:
+    deployer_name: python
+    modulePullPolicy: IfNotPresent
+    pythonPath: /home/mleader/.pyenv/versions/3.9.18/bin/python
+    workdir: /home/mleader/workspace/arcalot/flow/arcaflow_test_workflows/k8s_python_wait_simple_atpv3/tmp
+logged_outputs:
+  error:
+    level: error
+  #success:
+  #  level: info

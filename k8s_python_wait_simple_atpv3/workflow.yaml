@@ -1,0 +1,59 @@
+version: v0.2.0
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        kubeconfig:
+          display:
+            description: The complete kubeconfig file as a string
+            name: Kubeconfig file contents
+          type:
+            type_id: string
+          required: true
+steps:
+  kubeconfig:
+    plugin: 
+      src: quay.io/arcalot/arcaflow-plugin-kubeconfig:0.2.0
+      deployment_type: image
+    input:
+      kubeconfig: !expr $.input.kubeconfig
+  short_wait:
+    plugin: 
+      src: quay.io/arcalot/arcaflow-plugin-wait:atp-v3_cc3e02b
+      deployment_type: image
+    step: wait
+    input:
+      seconds: 30
+    deploy:
+      deployer_name: kubernetes
+      connection: !expr $.steps.kubeconfig.outputs.success.connection
+      pod:
+        metadata:
+          namespace: default
+          labels:
+            arcaflow: stressng
+        spec:
+          pluginContainer:
+            imagePullPolicy: IfNotPresent
+  container_wait:
+    plugin: 
+      src: quay.io/arcalot/arcaflow-plugin-wait:atp-v3_cc3e02b
+      deployment_type: image
+    step: wait
+    input:
+      seconds: 2            
+  python_wait:
+    plugin: 
+      src: arcaflow-plugin-wait@git+https://github.com/arcalot/arcaflow-plugin-wait.git@afdc2323805ffe2b37271f3a852a4ce7ac7379e1
+      deployment_type: python
+    step: wait
+    input:
+      seconds: 2       
+outputs:
+  a:
+    k8s: !expr $.steps.short_wait.outputs
+    docker: !expr $.steps.container_wait.outputs
+    python: !expr $.steps.python_wait.outputs
+    
