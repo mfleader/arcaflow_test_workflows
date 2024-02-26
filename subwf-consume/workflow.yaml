@@ -1,0 +1,26 @@
+version: v0.2.0
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  subwf_1:
+    kind: foreach
+    items:
+      - name: "test"
+    workflow: subwf-1.yaml
+  subwf_2:
+    kind: foreach
+    items:
+      - name: !expr $.steps.subwf_1.outputs
+    workflow: subwf-2.yaml
+  subwf_3:
+    kind: foreach
+    items:
+      - name: !expr $.steps.subwf_2.outputs
+    workflow: subwf-3.yaml
+outputs:
+  success:
+    step_3: !expr $.steps.subwf_3.outputs
