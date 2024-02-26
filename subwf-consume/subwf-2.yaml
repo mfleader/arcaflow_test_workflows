@@ -1,0 +1,29 @@
+version: v0.2.0
+input:
+  root: RootObject
+  objects:
+    input_item:
+      id: input_item
+      properties:
+        message:
+          type:
+            type_id: string
+    RootObject:
+      id: RootObject
+      properties:
+        input_list:
+          type:
+            type_id: list
+            items:
+              id: input_item
+              type_id: ref
+steps:
+  example:
+    plugin:
+      src: quay.io/arcalot/arcaflow-plugin-template-python
+      deployment_type: image
+    input:
+      name: !expr $.input.message
+outputs:
+  success:
+    message: !expr $.steps.example.outputs.success.message

@@ -4,13 +4,17 @@ input:
   objects:
     RootObject:
       id: RootObject
-      properties: {}
+      properties: 
+        name:
+          type:
+            type_id: string
 steps:
-  hello:
+  example1:
     plugin:
       src: quay.io/arcalot/arcaflow-plugin-template-python
       deployment_type: image
-  input:
-    name: !expr $.input.name
-output:
-  message: !expr $.steps.example.outputs.success.message
+    input:
+      name: !expr $.input.name
+outputs:
+  success:
+    message: !expr $.steps.example1.outputs.success.message
