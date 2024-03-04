@@ -10,15 +10,17 @@ steps:
     kind: foreach
     items:
       - name: "test"
+      - name: "test2"
+      - name: "test3"
     workflow: subwf-1.yaml
   subwf_2:
     kind: foreach
-    items: !expr $.steps.subwf_1.outputs.success
-    workflow: subwf-2.yaml
-  # subwf_3:
-  #   kind: foreach
-  #   items: !expr $.steps.subwf_2.outputs.success
-  #   workflow: subwf-3.yaml
+    items: !expr $.steps.subwf_1.outputs.success.data
+    workflow: subwf-1.yaml
+  subwf_3:
+    kind: foreach
+    items: !expr $.steps.subwf_2.outputs.success.data
+    workflow: subwf-1.yaml
 outputs:
   success:
-    step_3: !expr $.steps.subwf_2.outputs.success
+    step_3: !expr $.steps.subwf_3.outputs.success

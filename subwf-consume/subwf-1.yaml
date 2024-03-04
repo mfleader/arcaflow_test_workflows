@@ -1,9 +1,9 @@
 version: v0.2.0
 input:
-  root: RootObject
+  root: SubRootObject1
   objects:
-    RootObject:
-      id: RootObject
+    SubRootObject1:
+      id: SubRootObject1
       properties: 
         name:
           type:
@@ -17,4 +17,4 @@ steps:
       name: !expr $.input.name
 outputs:
   success:
-    message: !expr $.steps.example1.outputs.success.message
+    name: !expr $.steps.example1.outputs.success.message
