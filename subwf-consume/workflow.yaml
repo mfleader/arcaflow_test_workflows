@@ -25,5 +25,5 @@ steps:
 outputs:
   success:
     name: !expr $.steps.subwf_3.outputs.success
-  # failed:
-  #   error: !expr $.stpes.sub_wf3.failed.error
+  failed:
+    error: !expr $.stpes.subwf_3.failed.error

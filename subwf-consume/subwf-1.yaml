@@ -20,8 +20,8 @@ steps:
 outputs:
   success:
     name: !expr $.steps.example1.outputs.success.message
-  # error:
-  #   reason: !expr $.steps.example1.outputs.error.reason    
+  error:
+    error: !expr $.steps.example1.outputs.error.error
 
 outputSchema: 
   success: 
@@ -34,3 +34,6 @@ outputSchema:
             name:
               type:
                 type_id: string    
+            error:
+              type:
+                type_id: string
