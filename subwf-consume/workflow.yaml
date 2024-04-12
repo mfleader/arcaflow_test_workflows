@@ -1,0 +1,39 @@
+version: v0.2.0
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties: {}
+steps:
+  subwf_1:
+    kind: foreach
+    items:
+      - name: "john"
+      - name: "paul"
+      - name: "george"
+      - name: "ringo"
+    workflow: subwf-1.yaml
+  subwf_2:
+    kind: foreach
+    items: !expr $.steps.subwf_1.outputs.success.data
+    workflow: subwf-1.yaml
+  # subwf_3:
+  #   kind: foreach
+  #   items: !expr $.steps.subwf_2.outputs.success.data
+  #   workflow: subwf-1.yaml
+outputs:
+  success:
+    name: !expr $.steps.subwf_2.outputs.success
+
+outputSchema: 
+  success: 
+    schema: 
+      root: SubRootObject1
+      objects: 
+        SubRootObject1:
+          id: SubRootObject1
+          properties: 
+            name:
+              type:
+                type_id: string    
