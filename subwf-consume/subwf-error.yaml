@@ -12,16 +12,15 @@ input:
 steps:
   example1:
     plugin:
-      # src: quay.io/arcalot/arcaflow-plugin-template-python
-      src: quay.io/mleader/arcaflow-plugin-template-python:0.14.0
+      src: quay.io/mleader/arcaflow-plugin-template-python:error
       deployment_type: image
     input:
       name: !expr $.input.name
 outputs:
   success:
     name: !expr $.steps.example1.outputs.success.message
-  # error:
-  #   reason: !expr $.steps.example1.outputs.error.reason    
+  error:
+    reason: !expr $.steps.example1.outputs.error.reason
 
 outputSchema: 
   success: 

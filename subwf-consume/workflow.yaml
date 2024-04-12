@@ -9,7 +9,7 @@ steps:
   subwf_1:
     kind: foreach
     items:
-      - name: "john"
+      - name: "matt"
       - name: "paul"
       - name: "george"
       - name: "ringo"
@@ -17,23 +17,13 @@ steps:
   subwf_2:
     kind: foreach
     items: !expr $.steps.subwf_1.outputs.success.data
+    workflow: subwf-error.yaml
+  subwf_3:
+    kind: foreach
+    items: !expr $.steps.subwf_2.outputs.success.data
     workflow: subwf-1.yaml
-  # subwf_3:
-  #   kind: foreach
-  #   items: !expr $.steps.subwf_2.outputs.success.data
-  #   workflow: subwf-1.yaml
 outputs:
   success:
-    name: !expr $.steps.subwf_2.outputs.success
-
-# outputSchema: 
-#   success: 
-#     schema: 
-#       root: SubRootObject1
-#       objects: 
-#         SubRootObject1:
-#           id: SubRootObject1
-#           properties: 
-#             name:
-#               type:
-#                 type_id: string    
+    name: !expr $.steps.subwf_3.outputs.success
+  # failed:
+  #   error: !expr $.stpes.sub_wf3.failed.error
