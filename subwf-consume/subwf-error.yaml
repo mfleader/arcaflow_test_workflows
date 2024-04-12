@@ -33,6 +33,13 @@ outputSchema:
             name:
               type:
                 type_id: string    
+  error:
+    schema:
+      root: ErrorRoot
+      objects:
+        ErrorRoot:
+          id: ErrorRoot
+          properties:
             error:
               type:
                 type_id: string
