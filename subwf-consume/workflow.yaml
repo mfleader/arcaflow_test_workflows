@@ -18,12 +18,12 @@ steps:
     kind: foreach
     items: !expr $.steps.subwf_1.outputs.success.data
     workflow: subwf-error.yaml
-  subwf_3:
-    kind: foreach
-    items: !expr $.steps.subwf_2.outputs.success.data
-    workflow: subwf-1.yaml
+  # subwf_3:
+  #   kind: foreach
+  #   items: !expr $.steps.subwf_2.outputs.success.data
+  #   workflow: subwf-1.yaml
 outputs:
   success:
-    name: !expr $.steps.subwf_3.outputs.success
+    name: !expr $.steps.subwf_2.outputs.success
   error:
-    error: !expr $.steps.subwf_3.failed.error
+    error: !expr $.steps.subwf_2.failed.error
