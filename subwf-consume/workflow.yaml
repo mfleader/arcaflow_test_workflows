@@ -26,14 +26,14 @@ outputs:
   success:
     name: !expr $.steps.subwf_2.outputs.success
 
-outputSchema: 
-  success: 
-    schema: 
-      root: SubRootObject1
-      objects: 
-        SubRootObject1:
-          id: SubRootObject1
-          properties: 
-            name:
-              type:
-                type_id: string    
+# outputSchema: 
+#   success: 
+#     schema: 
+#       root: SubRootObject1
+#       objects: 
+#         SubRootObject1:
+#           id: SubRootObject1
+#           properties: 
+#             name:
+#               type:
+#                 type_id: string    

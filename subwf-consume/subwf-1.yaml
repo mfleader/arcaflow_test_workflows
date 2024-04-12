@@ -19,3 +19,15 @@ steps:
 outputs:
   success:
     name: !expr $.steps.example1.outputs.success.message
+
+outputSchema: 
+  success: 
+    schema: 
+      root: SubRootObject1
+      objects: 
+        SubRootObject1:
+          id: SubRootObject1
+          properties: 
+            name:
+              type:
+                type_id: string    
