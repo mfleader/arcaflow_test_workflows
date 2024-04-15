@@ -1,0 +1,119 @@
+---
+version: v0.2.0
+input:
+  root: SubRootObject1
+  objects:
+    Nickname:
+      id: Nickname
+      properties:
+        nick:
+          required: true
+          type:
+            min: 1
+            # pattern: ^[a-zA-Z]+$
+            type_id: string
+    FullName:
+      id: FullName
+      properties:
+        first_name:
+          required: true
+          type:
+            min: 1
+            # pattern: ^[a-zA-Z]+$
+            type_id: string
+        last_name:
+          required: true
+          type:
+            min: 1
+            # pattern: ^[a-zA-Z]+$
+            type_id: string
+    SubRootObject1:
+      id: SubRootObject1
+      properties:
+        name:
+          display:
+            description: Who do we say hello to?
+            name: Name
+          examples:
+          - '{"_type": "fullname", "first_name": "Arca", "last_name": "Lot"}'
+          - '{"_type": "nickname", "nick": "Arcalot"}'
+          required: true
+          type:
+            discriminator_field_name: _type
+            type_id: one_of_string
+            types:
+              fullname:
+                display:
+                  name: Full name
+                id: FullName
+                type_id: ref
+              nickname:
+                display:
+                  name: Nick
+                id: Nickname
+                type_id: ref
+steps:
+  example1:
+    plugin:
+      src: quay.io/arcalot/arcaflow-plugin-example
+      deployment_type: image
+    input:
+      name: {_type: "nickname", nick: !expr $.input.name}
+outputs:
+  success:
+    name: !expr $.steps.example1.outputs.success.message
+
+outputSchema: 
+  success: 
+    schema: 
+      root: SubRootObject1
+      objects: 
+        Nickname:
+          id: Nickname
+          properties:
+            nick:
+              required: true
+              type:
+                min: 1
+                # pattern: ^[a-zA-Z]+$
+                type_id: string
+        FullName:
+          id: FullName
+          properties:
+            first_name:
+              required: true
+              type:
+                min: 1
+                # pattern: ^[a-zA-Z]+$
+                type_id: string
+            last_name:
+              required: true
+              type:
+                min: 1
+                # pattern: ^[a-zA-Z]+$
+                type_id: string
+        SubRootObject1:
+          id: SubRootObject1
+          properties:
+            name:
+              display:
+                description: Who do we say hello to?
+                name: Name
+              examples:
+              - '{"_type": "fullname", "first_name": "Arca", "last_name": "Lot"}'
+              - '{"_type": "nickname", "nick": "Arcalot"}'
+              required: true
+              type:
+                discriminator_field_name: _type
+                type_id: one_of_string
+                types:
+                  fullname:
+                    display:
+                      name: Full name
+                    id: FullName
+                    type_id: ref
+                  nickname:
+                    display:
+                      name: Nick
+                    id: Nickname
+                    type_id: ref
