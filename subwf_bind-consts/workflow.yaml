@@ -1,0 +1,47 @@
+version: v0.2.0
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        repeated_inputs:
+          type:
+            type_id: ref
+            id: RepeatedValues
+        iterations:
+          type:
+            type_id: list
+            items:
+              type_id: object
+              id: ItemRoot
+              properties:
+                loop_id:
+                  # required: true
+                  type:
+                    type_id: integer
+    RepeatedValues:
+      id: RepeatedValues
+      properties:
+        name:
+          type:
+            type_id: string
+            
+
+
+steps:
+  metadata:
+    plugin:
+      deployment_type: image
+      src: quay.io/arcalot/arcaflow-plugin-metadata:0.4.0
+    input: {}
+  foreach_loop:
+    kind: foreach
+    items: !expr 'bindConstants($.input.iterations, $.input.repeated_inputs)'
+    workflow: subwf.yaml
+    parallelism: 1
+
+outputs:
+  success:
+    metadata: !expr $.steps.metadata.outputs.success
+    fab_four: !expr $.steps.foreach_loop.outputs.success.data

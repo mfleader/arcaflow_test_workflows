@@ -1,0 +1,11 @@
+repeated_inputs:
+  name: Matt
+iterations:
+  - loop_id: 1
+    # name: John
+  - loop_id: 2
+    # name: Paul
+  - loop_id: 3
+    # name: George
+  - loop_id: 4
+    # name: Ringo
