@@ -13,13 +13,9 @@ input:
           type:
             type_id: list
             items:
-              type_id: object
-              id: ItemRoot
-              properties:
-                loop_id:
-                  # required: true
-                  type:
-                    type_id: integer
+              id: SubRootObject
+              type_id: ref
+              namespace: $.steps.foreach_loop.execute.inputs.items
     RepeatedValues:
       id: RepeatedValues
       properties:
@@ -27,8 +23,6 @@ input:
           type:
             type_id: string
             
-
-
 steps:
   metadata:
     plugin:

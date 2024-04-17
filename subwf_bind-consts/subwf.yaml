@@ -1,9 +1,9 @@
 version: v0.2.0
 input:
-  root: CombinedObject
+  root: SubRootObject_RepeatedValues
   objects:
-    CombinedObject:
-      id: CombinedObject
+    SubRootObject_RepeatedValues:
+      id: SubRootObject_RepeatedValues
       properties:
         constant:
           type:
@@ -12,15 +12,7 @@ input:
         item:
           type:
             type_id: ref
-            id: Item
-        # loop_id:
-        #   required: true
-        #   type:
-        #     type_id: integer
-        # name:
-        #   required: true
-        #   type:
-        #     type_id: string
+            id: SubRootObject
     RepeatedValues:
       id: RepeatedValues
       properties:
@@ -28,8 +20,8 @@ input:
           # required: true
           type:
             type_id: string
-    Item:
-      id: Item
+    SubRootObject:
+      id: SubRootObject
       properties:
         loop_id:
           # required: true
