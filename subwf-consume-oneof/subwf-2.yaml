@@ -1,0 +1,15 @@
+case1:
+  root: wrong
+  objects:
+    a:
+      id: a
+case_mismatched_root_id:
+  root: a
+  objects:
+    a:
+      id: wrong
+case3:
+  root: a
+  objects:
+    wrong:
+      id: a

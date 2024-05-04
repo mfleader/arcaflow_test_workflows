@@ -1,0 +1,38 @@
+version: v0.2.0
+input:
+  root: RootObject
+  objects:
+    RootObject:
+      id: RootObject
+      properties:
+        name:
+          type:
+            type_id: string
+            # id: RepeatedValues
+        iterations:
+          type:
+            type_id: list
+            items:
+              id: SubRootObject
+              type_id: ref
+              namespace: $.steps.foreach_loop.execute.inputs.items
+    RepeatedValues:
+      id: RepeatedValues
+      properties:
+        name:
+          type:
+            type_id: string
+            
+steps:
+  foreach_loop:
+    kind: foreach
+    items: !expr 'bindConstants($.input.iterations, $.input.name)'
+    workflow: subwf.yaml
+  subwf_2:
+    kind: foreach
+    items: !expr $.steps.foreach_loop.outputs.success.data
+    workflow: subwf.yaml
+
+outputs:
+  success:
+    fab_four: !expr $.steps.subwf_2.outputs.success.data    

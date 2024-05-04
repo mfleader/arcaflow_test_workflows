@@ -1,4 +1,4 @@
-repeated_inputs: 
+repeated_inputs:
   name: Matt
 iterations:
   - loop_id: 1

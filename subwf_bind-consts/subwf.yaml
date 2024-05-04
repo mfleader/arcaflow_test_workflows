@@ -1,9 +1,9 @@
 version: v0.2.0
 input:
-  root: SubRootObject_RepeatedValues
+  root: SubRootObject__RepeatedValues
   objects:
-    SubRootObject_RepeatedValues:
-      id: SubRootObject_RepeatedValues
+    SubRootObject__RepeatedValues:
+      id: SubRootObject__RepeatedValues
       properties:
         constant:
           type:
